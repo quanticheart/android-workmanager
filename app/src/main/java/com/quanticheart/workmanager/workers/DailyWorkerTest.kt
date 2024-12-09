@@ -31,6 +31,11 @@ fun Context.scheduleDailyWorkerTest(timeDiff: Long = 1) {
     val dailyWorkRequest = OneTimeWorkRequestBuilder<DailyWorkerTest>().setInitialDelay(
         timeDiff,
         TimeUnit.MILLISECONDS
-    ).addTag("DailyWorker").build()
-    WorkManager.getInstance(applicationContext).enqueue(dailyWorkRequest)
+    )
+        .addTag("DailyWorker").build()
+
+
+    WorkManager.getInstance(applicationContext)
+
+        .enqueue(dailyWorkRequest)
 }

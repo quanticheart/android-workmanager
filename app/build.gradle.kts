@@ -37,6 +37,8 @@ android {
 
 dependencies {
 
+    implementation(libs.koin.android)
+    implementation (libs.koin.androidx.workmanager)
     implementation(libs.androidx.work.runtime.ktx)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

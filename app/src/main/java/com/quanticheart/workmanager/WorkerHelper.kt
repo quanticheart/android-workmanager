@@ -9,6 +9,7 @@ import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import androidx.work.WorkRequest
 import java.security.MessageDigest
@@ -90,6 +91,37 @@ object WorkerHelper {
 
     fun cancelWorkerById(context: Context, worker: WorkRequest) {
         WorkManager.getInstance(context).cancelWorkById(worker.id)
+    }
+
+    fun getObserver(context: Context, workerID: UUID) {
+        WorkManager.getInstance(context).getWorkInfoByIdLiveData(workerID)
+            .observeForever {
+                when (it?.state) {
+                    WorkInfo.State.ENQUEUED -> {
+                    }
+
+                    WorkInfo.State.RUNNING -> {
+                    }
+
+                    WorkInfo.State.SUCCEEDED -> {
+
+                    }
+
+                    WorkInfo.State.FAILED -> {
+
+                    }
+
+                    WorkInfo.State.BLOCKED -> {
+                    }
+
+                    WorkInfo.State.CANCELLED -> {
+                    }
+
+                    null -> {
+
+                    }
+                }
+            }
     }
 
     fun generateUUID(): String {
